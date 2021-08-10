@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suplement</title>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- css -->
+    <link rel="stylesheet" href="scss/style.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"
+        defer></script>
+    <!-- js -->
+    <script src="js/supplementSlider.js" defer></script>
+    <script src="js/lazyLoad.js" defer></script>
+</head>
+
+<div class="loading-window">
+    <div class="spinner-border" role="status">
+      </div>
+  </div>
+
+  <script>
+      let loadingWindowItem = document.querySelector('.loading-window');
+      
+      window.addEventListener('load' , () => {
+          loadingWindowItem.style.opacity = 0;
+
+          setTimeout(() => {
+              loadingWindowItem.remove();
+          }, 300);
+          
+      });
+  </script>
+
+
+
+    <!-- header -->
+    <header class="header">
+        <div class="fixed-top navigation-main" style="background:white;">
+            <nav class="navigation container">
+                <div class="navigation__logo d-flex align-items-center">
+                    <img src="img/logo.png" alt="">
+                    <h6>Supplement</h6>
+                </div>
+
+                <div class="navigation__menu">
+                    <input id="menu__toggle" type="checkbox" />
+                    <label class="menu__btn" for="menu__toggle">
+                        <span></span>
+                    </label>
+                    <ul class="menu__box">
+                        <li><a class="menu__item" href="#Fetures">Fetures</a></li>
+                        <li><a class="menu__item" href="#RealResults">Real Results</a></li>
+                        <li><a class="menu__item" href="#Testimonials">Testimonials</a></li>
+                        <li><a class="menu__item" href="#Facts">Facts</a></li>
+                        <li><a class="menu__item" href="#YourIssue">Your Issue</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <!-- header logic -->
+        <script>
+            function getScrollbarWidth() {
+            var div, width = getScrollbarWidth.width;
+            if (width === undefined) {
+                div = document.createElement('div');
+                div.innerHTML = '<div style="width:50px;height:50px;position:absolute;left:-50px;top:-50px;overflow:auto;"><div style="width:1px;height:100px;"></div></div>';
+                div = div.firstChild;
+                document.body.appendChild(div);
+                width = getScrollbarWidth.width = div.offsetWidth - div.clientWidth;
+                document.body.removeChild(div);
+            }
+            return width;
+            };
+
+
+            function navigationMenu() {
+                let scrollWidth = document.offsetWidth - document.clientWidth;
+                let menu = document.querySelector('.menu__btn');
+                let menuBox = document.querySelector('.menu__box');
+                let menuBoxItems = document.querySelectorAll('.menu__box li');
+                let navigationNav = document.querySelector('.navigation-main');
+
+                menuBoxItems.forEach(current => {
+                    current.onclick = () => {
+                        menuBox.classList.remove('menu-active');
+                        document.body.classList.remove('overflow-hidden');
+
+                        menu.classList.remove('menu-btn_active');
+
+                        document.body.classList.toggle('margin-right-for-body');
+                        if (document.body.classList.contains('margin-right-for-body')) {
+                            document.body.style.marginRight = getScrollbarWidth() + 'px';
+                            navigationNav.style.marginRight = getScrollbarWidth() + 'px';
+                        } else {
+                            document.body.style.marginRight = 0;
+                            navigationNav.style.marginRight = 0
+                        }
+                    }
+                });
+
+                menu.onclick = (e) => {
+                    e.preventDefault();
+                    menuBox.classList.toggle('menu-active');
+                    document.body.classList.toggle('overflow-hidden');
+                    menu.classList.toggle('menu-btn_active');
+
+                    document.body.classList.toggle('margin-right-for-body');
+                    if (document.body.classList.contains('margin-right-for-body')) {
+                        document.body.style.marginRight = getScrollbarWidth() + 'px';
+                        navigationNav.style.marginRight = getScrollbarWidth() + 'px';
+                    } else {
+                        document.body.style.marginRight = 0;
+                        navigationNav.style.marginRight = 0
+                    }
+                };
+
+            }
+            
+            navigationMenu();
+        </script>
+
+
+        <!-- header content -->
+        <div class="container header__content">
+            <div class="row">
+                <div class="col-xl-6 col-md-7 col-sm-12">
+                    <div class="header__title">
+                        <h1 style="font-family: 'Lato';">DO IT NOV<span id="header__span">V</span></h1>
+                        <h5>Or You Never Get It Back</h5>
+                    </div>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci perspiciatis porro
+                        voluptatibus deserunt, fugiat omnis.</p>
+                    <div class="header__buttons">
+                        <button class="header__button header__button_blue" type="button" data-bs-toggle="modal" data-bs-target="#orderModal">ORDER NOW</button>
+                        <button class="header__button header__button_video our-focus__video" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">WATCH THE VIDEO <img src="img/header-button.png"
+                                alt=""></button>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-md-5 col-sm-12 header__right lazy-load_onload lazy-load">
+                    <img src="img/header-good.png" alt="">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 700px;">
+            <div class="modal-content">
+                <div class="modal-header" style="border-bottom:0;">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <video controls autoplay width="100%">
+                        <source src="video/rick-roll.ogv">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //video logic...
+        window.addEventListener('load', () => {
+            modal.querySelector('video').src = '';
+        });
+
+        let modal = document.querySelector('.modal');
+        let ourFocusVideo = document.querySelector('.our-focus__video');
+
+        modal.querySelector('button').onclick = () => {
+            modal.querySelector('video').setAttribute('src', '')
+        }
+
+        ourFocusVideo.addEventListener('click', () => {
+            modal.querySelector('video').setAttribute('src', 'video/rick-roll.ogv')
+        })
+    </script>
+    <!-- /header -->
+
+    <main>
+        <!-- counter -->
+        <section class="section">
+            <div class="counter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12 lazy-load">
+                            <img src="img/counter-img.png" alt="">
+                        </div>
+
+                        <div class="col-md-3 col-sm-4 col-4">
+                            <div class="counter__item">
+                                <h3 class="counter__number">100</h3>
+                                <p class="counter__description">MG</p>
+                                <p class="counter__description counter__description_grey">Per Capsule</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 col-4">
+                            <div class="counter__item">
+                                <h3 class="counter__number">60</h3>
+                                <p class="counter__description">CAPSULES</p>
+                                <p class="counter__description counter__description_grey">Per Bottle</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 col-4">
+                            <div class="counter__item">
+                                <h3 class="counter__number">900</h3>
+                                <p class="counter__description">PLUS</p>
+                                <p class="counter__description counter__description_grey">Satisfied Customers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /counter -->
+
+        <!-- features -->
+        <section class="section" id="Fetures">
+            <div class="fetures">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title fetures__title text-center">
+                                <h4 class="fetures__h4_bold fetures__h4 section-title-h4_bold">FETURES</h4>
+                                <div class="fetures__line section-title-line"></div>
+                                <h4 class="fetures__h4 section-title-h4">
+                                    <div class="fetures__title-w"><span>V</span><span>V</span></div>E OFFER
+                                </h4>
+                            </div>
+                            <div class="col-12 text-center fetures__description section-description">
+                                <p>Don't forget to check these real success.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row fetures__main">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="fetures__item fetures__item_left lazy-load">
+                                <h4>INCREASED ENERGY<div class="fetures__item-line"></div>
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, consectetur.</p>
+                            </div>
+
+                            <div class="fetures__item fetures__item_left lazy-load">
+                                <h4 class="d-flex justify-content-end">
+                                    <div class="fetures__item-w d-flex"><span>V</span><span class="fetures__w">V</span>
+                                    </div>EIGHT LOSS<div class="fetures__item-line"></div>
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, consectetur.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12 fetures__main_right">
+                            <div class="fetures__item fetures__item_right lazy-load">
+                                <h4>BONE BUILDER<div class="fetures__item-line"></div>
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, quidem?</p>
+                            </div>
+
+                            <div class="fetures__item fetures__item_right lazy-load">
+                                <h4>STRESS RELEASE<div class="fetures__item-line"></div>
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, quidem?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /features -->
+
+        <!-- real results -->
+        <section class="section" id="RealResults">
+            <div class="result">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title result__title text-center">
+                                <h4 class="result__h4_bold result__h4 section-title-h4_bold section-title-h4">REAL MAN
+                                </h4>
+                                <div class="result__line section-title-line"></div>
+                                <h4 class="result__h4 section-title-h4">REAL RESULTS</h4>
+                            </div>
+                            <div class="col-12 text-center result__description section-description">
+                                <p>Don't forget to check these real success.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div id="resultCarousel" class="result__carousel carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#resultCarousel" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#resultCarousel" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#resultCarousel" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="d-flex align-items-center justify-content-center result__adaptive">
+                                        <div class="result__carousel-img">
+                                            <img src="img/relult-slider-img.png" alt="">
+                                        </div>
+
+                                        <div class="result__carousel-text">
+                                            <div class="result__slider-title d-flex">
+                                                <span class="d-flex align-items-end flex-wrap" id="result__before">
+                                                    <h3>87</h3>KG
+                                                </span>
+                                                <span class="d-flex align-items-end flex-wrap" id="result__after">
+                                                    <h3>63</h3>KG
+                                                </span>
+
+                                            </div>
+
+                                            <div class="result__carousel-description">
+                                                <h5>MIKE ANDERSEN</h5>
+                                                <h5 class="result__carousel-age">AGE:28</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="carousel-item">
+                                    <div class="d-flex align-items-center justify-content-center result__adaptive">
+                                        <div class="result__carousel-img">
+                                            <img src="img/relult-slider-img.png" alt="">
+                                        </div>
+
+                                        <div class="result__carousel-text">
+                                            <div class="result__slider-title d-flex">
+                                                <span class="d-flex align-items-end flex-wrap" id="result__before">
+                                                    <h3>67</h3>KG
+                                                </span>
+                                                <span class="d-flex align-items-end flex-wrap" id="result__after">
+                                                    <h3>53</h3>KG
+                                                </span>
+                                            </div>
+
+                                            <div class="result__carousel-description">
+                                                <h5>SOFIA KENINGE</h5>
+                                                <h5 class="result__carousel-age">AGE:32</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="carousel-item">
+                                    <div class="d-flex align-items-center justify-content-center result__adaptive">
+                                        <div class="result__carousel-img">
+                                            <img src="img/relult-slider-img.png" alt="">
+                                        </div>
+
+                                        <div class="result__carousel-text">
+                                            <div class="result__slider-title d-flex">
+                                                <span class="d-flex align-items-end flex-wrap" id="result__before">
+                                                    <h3>85</h3>KG
+                                                </span>
+                                                <span class="d-flex align-items-end flex-wrap" id="result__after">
+                                                    <h3>66</h3>KG
+                                                </span>
+                                            </div>
+
+                                            <div class="result__carousel-description">
+                                                <h5>ANDREW DIOLET</h5>
+                                                <h5 class="result__carousel-age">AGE:22</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#resultCarousel"
+                                data-bs-slide="prev">
+                                <span aria-hidden="true">
+                                    <img src="img/result-prev.png" alt="">
+                                </span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#resultCarousel"
+                                data-bs-slide="next">
+                                <span aria-hidden="true" style="transform: rotate(180deg);">
+                                    <img src="img/result-prev.png" alt="">
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /real results -->
+
+        <!-- testimonials -->
+        <section class="section" id="Testimonials">
+            <div class="testimonials">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title testimonials__title text-center">
+                                <h4
+                                    class="testimonials__h4_bold testimonials__h4 section-title-h4_bold section-title-h4">
+                                    CLIENT</h4>
+                                <div class="testimonials__line section-title-line"></div>
+                                <h4 class="testimonials__h4 section-title-h4">TESTIMONIALS</h4>
+                            </div>
+                            <div class="col-12 text-center testimonials__description section-description">
+                                <p>We don't just sell, we're beloved too.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div id="testimonials__slider" class="carousel slide" data-bs-ride="carousel"
+                            data-bs-interval='15000'>
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#testimonials__slider" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#testimonials__slider" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#testimonials__slider" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="testimonials__carousel-item">
+                                        <div class="testimonials__carousel-description"><i>Lorem sit amet consectetur
+                                                adipisicing elit. Facilis eligendi distinctio corrupti aliquid eaque
+                                                animi a nostrum, necessitatibus harum eveniet? Quidem, est sit at non
+                                                officiis consequatur, exercitationem laborum excepturi aperiam ut omnis
+                                                magnam cum, laudantium necessitatibus. Cupiditate, nesciunt.</i></div>
+
+                                        <div class="testimonials__carousel-author d-flex">
+                                            <img src="img/testimonials-slider.png" alt="">
+                                            <div class="testimonials__carousel-title">
+                                                <h4>SOFIA KERGER</h4>
+                                                <p>Estland, Tallinn</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="carousel-item">
+                                    <div class="testimonials__carousel-item">
+                                        <div class="testimonials__carousel-description"><i>Lorem ipsum dolor sit amet
+                                                consectetur adipisicing eli distinctio corrupti aliquid eaque animi a
+                                                nostrum, necessitatibus harum eveniet? Quidem, est sit at non officiis
+                                                exercitationem laborum excepturi aperiam ut omnis magnam cum, laudantium
+                                                necessitatibus. Cupiditate, nesciunt.</i></div>
+
+                                        <div class="testimonials__carousel-author d-flex">
+                                            <img src="img/testimonials-slider.png" alt="">
+                                            <div class="testimonials__carousel-title">
+                                                <h4>ALENA PARKER</h4>
+                                                <p>Sydney, Australia</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="carousel-item">
+                                    <div class="testimonials__carousel-item">
+                                        <div class="testimonials__carousel-description"><i>Lorem ipsum dolor sit amet
+                                                consectetur adipisicing elit. Facilis eligendi distinctio aliquid eaque
+                                                animi a nostrum, necessitatibus harum eveniet? Quidem, est sit at non ,
+                                                quisquam excepturi aperiam ut omnis magnam cum, laudantium
+                                                necessitatibus. Cupiditate, nesciunt.</i></div>
+
+                                        <div class="testimonials__carousel-author d-flex">
+                                            <img src="img/testimonials-slider.png" alt="">
+                                            <div class="testimonials__carousel-title">
+                                                <h4>KRISTI MINTAL</h4>
+                                                <p>England, London</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /testimonials -->
+
+        <!-- SUPPLEMENT -->
+        <section class="section" id="Facts">
+            <div class="supplement">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title supplement__title text-center">
+                                <h4 class="supplement__h4_bold supplement__h4 section-title-h4_bold section-title-h4">
+                                    SUPPLEMENT</h4>
+                                <div class="supplement__line section-title-line"></div>
+                                <h4 class="supplement__h4 section-title-h4">FACTS</h4>
+                            </div>
+                            <div class="col-12 text-center supplement__description section-description">
+                                <p>We're brave enough to show what we use.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row supplement__margin-top">
+                        <div class="col-xl-7 col-md-6 col-sm-12">
+                            <div class="supplement__left supplement__left-padding">
+                                <div class="supplement__header d-flex justify-content-between align-items-center">
+                                    <h3 style="margin: 0;">INGRIDIENTS</h3>
+
+                                    <div class="supplement__mg text-end">
+                                        <b>PER SERVING</b>
+                                        <br>
+                                        <span>(MG)</span>
+                                    </div>
+                                </div>
+
+                                <div class="supplement__table">
+                                    <div
+                                        class="supplement__item d-flex justify-content-between align-items-center supplement__item_active">
+                                        <p>Citrus Auranium</p>
+                                        <p>100</p>
+                                    </div>
+
+                                    <div class="supplement__item d-flex justify-content-between align-items-center">
+                                        <p>Green Coffe Extract</p>
+                                        <p>72</p>
+                                    </div>
+
+                                    <div class="supplement__item d-flex justify-content-between align-items-center">
+                                        <p>Green Tea Extract</p>
+                                        <p>88</p>
+                                    </div>
+
+                                    <div class="supplement__item d-flex justify-content-between align-items-center">
+                                        <p>Guarana Extract w/10% Caffeine</p>
+                                        <p>4</p>
+                                    </div>
+
+                                    <div class="supplement__item d-flex justify-content-between align-items-center">
+                                        <p>L-Phenylalanine</p>
+                                        <p>67</p>
+                                    </div>
+
+                                    <div class="supplement__item d-flex justify-content-between align-items-center">
+                                        <p>Niacin</p>
+                                        <p>87</p>
+                                    </div>
+
+                                    <div class="supplement__item d-flex justify-content-between align-items-center">
+                                        <p>Red Pepper Extract</p>
+                                        <p>323</p>
+                                    </div>
+
+                                    <div class="supplement__item d-flex justify-content-between align-items-center">
+                                        <p>Vitamin B6</p>
+                                        <p>8</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-5 col-md-6 col-sm-12">
+                            <div class="supplement__right-padding">
+                                <div class="supplement__right">
+                                    <div class="supplement__right-item supplement__right-item_active">
+                                        <img src="img/supplement-table.png" alt="">
+                                        <div class="supplement__right-title">
+                                            <h5>citrus aurantium</h5>
+                                            <p>100 mg</p>
+
+                                            <div class="line"></div>
+                                        </div>
+
+                                        <p style="color:#8d8f8f;font-weight: 300;font-size: 15px;">Lorem ipsum dolor sit
+                                            amet consectetur culpa ea tempora harum suscipit asperiores voluptatibus
+                                            quos. Neque sapiente nulla explicabo, saepe sequi quam est nihil a
+                                            voluptatum nobis optio ex deserunt illo molestias cupiditate assumenda
+                                            officiis maiores quis soluta illum! Alias ipsum.</p>
+                                    </div>
+
+                                    <div class="supplement__right-item">
+                                        <img src="img/supplement-table.png" alt="">
+                                        <div class="supplement__right-title">
+                                            <h5>green coffe extract</h5>
+                                            <p>72 mg</p>
+
+                                            <div class="line"></div>
+                                        </div>
+
+                                        <p style="color:#8d8f8f;font-weight: 300;font-size: 15px;">Lorem ipsum dolor sit
+                                            amet consectetur culpa ea tempora suscipit asperiores voluptatibus quos.
+                                            Neque sapiente nulla explicabo, sequi quam est nihil a voluptatum nobis
+                                            optio ex deserunt illo molestias cupiditate assumenda officiis maiores quis
+                                            soluta illum! Alias ipsum.</p>
+                                    </div>
+
+                                    <div class="supplement__right-item">
+                                        <img src="img/supplement-table.png" alt="">
+                                        <div class="supplement__right-title">
+                                            <h5>green tea extract</h5>
+                                            <p>88 mg</p>
+
+                                            <div class="line"></div>
+                                        </div>
+
+                                        <p style="color:#8d8f8f;font-weight: 300;font-size: 15px;">Lorem ipsum dolor sit
+                                            amet consectetur culpa ea tempora harum suscipit asperiores voluptatibus
+                                            quos. Neque sapiente nulla explicabo, saepe sequi quam est nihil a Lorem,
+                                            ipsum dolor. nobis optio ex deserunt illo molestias cupiditate assumenda
+                                            officiis maiores quis soluta illum! Alias ipsum.</p>
+                                    </div>
+
+                                    <div class="supplement__right-item">
+                                        <img src="img/supplement-table.png" alt="">
+                                        <div class="supplement__right-title">
+                                            <h5>Guarana Extract w/10% Caffeine</h5>
+                                            <p>4 mg</p>
+
+                                            <div class="line"></div>
+                                        </div>
+
+                                        <p style="color:#8d8f8f;font-weight: 300;font-size: 15px;">Lorem ipsum dolor sit
+                                            amet consectetur culpa ea tempora harum suscipit asperiores voluptatibus
+                                            quos. Neque sapiente nulla explicabo, saepe sequi quam est nihil a nobis
+                                            optio ex deserunt illo molestias cupiditate assumenda officiis maiores quis
+                                            soluta illum! Alias ipsum.</p>
+                                    </div>
+
+                                    <div class="supplement__right-item">
+                                        <img src="img/supplement-table.png" alt="">
+                                        <div class="supplement__right-title">
+                                            <h5>l-phenylalaline</h5>
+                                            <p>67 mg</p>
+
+                                            <div class="line"></div>
+                                        </div>
+
+                                        <p style="color:#8d8f8f;font-weight: 300;font-size: 15px;">Lorem ipsum dolor sit
+                                            amet consectetur culpa ea tempora harum suscipit asperiores voluptatibus
+                                            quos. Neque sapiente nulla explicabo, saepe sequi quam est nihil a
+                                            voluptatum nobis optio ex deserunt illo molestias cupiditate Lorem, ipsum.
+                                            officiis maiores quis soluta illum! Alias ipsum.</p>
+                                    </div>
+
+                                    <div class="supplement__right-item">
+                                        <img src="img/supplement-table.png" alt="">
+                                        <div class="supplement__right-title">
+                                            <h5>niacin</h5>
+                                            <p>87 mg</p>
+
+                                            <div class="line"></div>
+                                        </div>
+
+                                        <p style="color:#8d8f8f;font-weight: 300;font-size: 15px;">Lorem ipsum dolor sit
+                                            amet consectetur culpa ea tempora harum suscipit asperiores voluptatibus
+                                            quos. Neque sapiente nulla explicabo, saepe sequi quam est nihil a
+                                            voluptatum nobis optio ex deserunt illo molestias cupiditate assumenda
+                                            officiis maiores quis soluta illum! Alias ipsum.</p>
+                                    </div>
+
+                                    <div class="supplement__right-item">
+                                        <img src="img/supplement-table.png" alt="">
+                                        <div class="supplement__right-title">
+                                            <h5>red pepper extract</h5>
+                                            <p>323 mg</p>
+
+                                            <div class="line"></div>
+                                        </div>
+
+                                        <p style="color:#8d8f8f;font-weight: 300;font-size: 15px;">Lorem ipsum dolor sit
+                                            amet consectetur culpa ea tempora harum suscipit asperiores voluptatibus
+                                            quos. Neque sapiente nulla explicabo, saepe sequi quam est nihil deserunt
+                                            illo molestias cupiditate assumenda officiis maiores quis soluta illum!
+                                            Alias ipsum.</p>
+                                    </div>
+
+                                    <div class="supplement__right-item">
+                                        <img src="img/supplement-table.png" alt="">
+                                        <div class="supplement__right-title">
+                                            <h5>vitamin b6</h5>
+                                            <p>8 mg</p>
+
+                                            <div class="line"></div>
+                                        </div>
+
+                                        <p style="color:#8d8f8f;font-weight: 300;font-size: 15px;">Lorem ipsum dolor sit
+                                            amet consectetur culpa ea tempora harum suscipit asperiores voluptatibus
+                                            quos. Neque sapiente nulla explicabo, saepe sequi quam est nihil a
+                                            voluptatum nobis optio ex deserunt illo molestias cupiditate assumenda
+                                            officiis maiores quis soluta illum! Alias ipsum.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-xl-7 col-md-6 col-sm-12">
+                            <a class="supplement__button d-flex justify-content-between" href="img/logo.png" download>
+                                <h5>DOWNLOAD SPECS</h5>
+                                <p>(50KB)</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /supplement -->
+
+        <!-- sertifications -->
+        <section class="section">
+            <div class="sertifications">
+                <div class="container">
+                    <div class="row">
+                        <div class="sertifications__title section-title section-title_grey d-block text-center">
+                            <h2>CERTIFICATIONS</h2>
+                            <p>We don't sell craps. We're certifed.</p>
+                        </div>
+                    </div>
+
+                    <div class="row sertifications__items">
+                            <div
+                                class="col-md-2 col-sm-6 sertifications__item d-flex justify-content-center align-items-center lazy-load">
+                                <img src="img/sertifications1.png" alt="">
+                            </div>
+
+                            <div
+                                class="col-md-2 col-sm-6 sertifications__item d-flex justify-content-center align-items-center lazy-load">
+                                <img src="img/sertifications2.png" alt="">
+                            </div>
+
+                            <div
+                                class="col-md-2 col-sm-6 sertifications__item d-flex justify-content-center align-items-center lazy-load">
+                                <img src="img/sertifications3.png" alt="">
+                            </div>
+
+                            <div
+                                class="col-md-2 col-sm-6 sertifications__item d-flex justify-content-center align-items-center lazy-load">
+                                <img src="img/sertifications4.png" alt="">
+                            </div>
+
+                            <div
+                                class="col-md-2 col-sm-12 sertifications__item d-flex justify-content-center align-items-center lazy-load">
+                                <img src="img/sertifications5.png" alt="">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /sertifications -->
+
+        <!-- good -->
+        <section class="section">
+            <div class="good">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-12">
+                            <div class="good__left">
+                                <img src="img/good-img.png" alt="" class="lazy-load">
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 col-sm-12">
+                            <div class="good__right">
+                                <div class="good__title">
+                                    <h2>A SUPPLEMENT</h2>
+                                    <h5>$29 USD</h5>
+
+                                    <div class="line"></div>
+                                </div>
+
+                                <p>Lorem ipsum dolor sit amet consectetur Lorem, ipsum. adipisicing elit. Dignissimos
+                                    quis at iusto laborum. Esse modi quod, quibusdam sed sequi sint?</p>
+                                <button class="good__button" type="button" data-bs-toggle="modal" data-bs-target="#orderModal">ORDER NOW</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /good -->
+
+        <!-- subscribe -->
+        <section class="section">
+            <div class="subscribe">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title subscribe__title text-center">
+                                <h4 class="subscribe__h4_bold ssubscribe__h4 section-title-h4_bold section-title-h4">
+                                    SUBSCRIBE</h4>
+                                <div class="subscribe__line section-title-line"></div>
+                                <h4 class="subscribe__h4 section-title-h4">FOR TIPS & OFFERS</h4>
+                            </div>
+                            <div class="col-12 text-center subscribe__description section-description">
+                                <p>We legularly knock our customers with useful tips and offers</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="subscribe__form text-center">
+                                <div class="subscribe__mail">
+                                    <input type="mail" class="subscribe__input" placeholder="Enter Your Email">
+                                    <button class="subscribe__button">SUBSCRIBE</button>
+
+                                    <div class="subscribe__error">this field should be fill</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            let button = document.querySelector('.subscribe__button');
+            let subscribeInput = document.querySelector('.subscribe__input');
+            let subscribeError = document.querySelector('.subscribe__error');
+
+            button.onclick = () => {
+                let dotCounter = 0;
+                if (subscribeInput.value == '') {
+                    subscribeError.style.opacity = 1;
+                    return false;
+                }
+
+                for (let key in subscribeInput.value) {
+                    if (subscribeInput.value[key] == '@') dotCounter++;
+                }
+
+                if (dotCounter != 1) {subscribeError.style.opacity = 1;}
+                else {
+                    subscribeError.style.opacity = 0;
+                    subscribeInput.value = '';
+                }
+            }
+        </script>
+        <!-- /subscribe -->
+
+        <!-- inquire -->
+        <section class="section" id="YourIssue">
+            <div class="inquire">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title inquire__title text-center">
+                                <h4 class="inquire__h4_bold inquire__h4 section-title-h4_bold section-title-h4">INQUIRE
+                                </h4>
+                                <div class="inquire__line section-title-line"></div>
+                                <h4 class="inquire__h4 section-title-h4">YOUR ISSUE</h4>
+                            </div>
+                            <div class="col-12 text-center inquire__description section-description">
+                                <p>We're always happy to reply our customers</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="row inquire__form">
+                        <div class="col-md-6 col-sm-12 inquire__input">
+                            <input type="text" placeholder="Name">
+                            <div class="inquire__error">This field must be filled</div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12 inquire__input mail__input">
+                            <input type="mail" placeholder="Email">
+                            <div class="inquire__error">This field must be filled or Wrong Email</div>
+                        </div>
+
+                        <div class="col-12 inquire__input">
+                            <input type="text" placeholder="Subject" class="input-subject">
+                            <div class="inquire__error inquire__error_last ">This field must be filled</div>
+                        </div>
+
+                        <div class="col-12 text-center inquire__button-container">
+                            <div class="inquire__button-line"></div>
+                            <input class="inquire__button" type="submit" value="SEND">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            let inquireInput = document.querySelectorAll('.inquire__input input');
+            let inquireError = document.querySelectorAll('.inquire__error');
+            let send = document.querySelector('.inquire__form');
+
+            let mailInput = document.querySelector('.mail__input input');
+        
+            send.addEventListener('submit', (e) => {
+                e.preventDefault()
+
+                // check empty
+                inquireInput.forEach(el => {
+                    if (el.value == ''){
+                        el.nextElementSibling.style.opacity = 1;
+                    } else {
+                        el.nextElementSibling.style.opacity = 0;
+                    }
+                })
+
+                // check mail
+                if (mailInput.value.includes('@')) {
+                    mailInput.nextElementSibling.style.opacity = 0;
+                } else {
+                    mailInput.nextElementSibling.style.opacity = 1;
+                }
+            });
+        </script>
+        <!-- /inquire -->
+    </main>
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-sm-12">
+                    <div class="footer__left">
+                        <p>&copy;Amazon LLC. All Rights Reserved</p>
+                        <div class="footer__left-links d-flex">
+                            <a href="#">About</a>
+                            <a href="#">Terms</a>
+                            <a href="#">Privacy</a>
+                            <a href="#">Contact</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 text-end">
+                    <a href="#"><img src="img/footer-img.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /footer -->
+
+    <!-- order modal -->
+    <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content order-modal">
+            <div class="modal-header" style="border:none;">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <input type="text" placeholder="Your Email or Phone">
+                <div class="order__error">This field must be filled</div>
+
+                <img src="img/good-img.png" alt="">
+            </div>
+            <div class="modal-footer d-flex justify-content-center" style="border:none;">
+            <button type="button" class="order-modal__button">SEND</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        let input = document.querySelector('.order-modal input');
+        let closeButton = document.querySelector('.order-modal__button');
+        let orderError = document.querySelector('.order__error');
+
+        input.onkeypress = () => {
+            if (input.value != '') {
+                closeButton.setAttribute('data-bs-dismiss','modal');
+            }
+        }
+
+        closeButton.addEventListener('click', () => {
+            closeButton.removeAttribute('data-bs-dismiss');
+
+            // check mail
+            if (input.value == '') {
+                orderError.style.opacity = 1;
+            }
+            else {
+                orderError.style.opacity = 0;
+                input.value = ''
+            }
+        })
+    </script>
+
+</body>
+
+</html>
